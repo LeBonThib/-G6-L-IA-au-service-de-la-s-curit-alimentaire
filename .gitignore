@@ -1,1 +1,4 @@
-__pycache__
+/website/__pycache__
+/website/func_library/config.py
+/website/func_library/database_query.py
+/website/func_library/database.ini

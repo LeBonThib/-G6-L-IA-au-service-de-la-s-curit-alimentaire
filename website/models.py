@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from modulefinder import STORE_NAME
 from website import db
 
@@ -15,11 +16,11 @@ class raw_data(db.Model):
     store_industry_ods = db.Column(db.String(5000))
 
 class inspection_data(db.Model):
-    inspection_id = db.Column(db.Integer, primary_key=True)
-    inspection_date = db.Column(db.DateTime(timezone=True))
+    inspection_id = db.Column(db.String, primary_key=True)
+    inspection_date = db.Column(db.String(5000))
     inspection_result = db.Column(db.String(5000))
-    store_id = db.Column(db.Integer, db.ForeignKey('raw_data.store_id'))
-    prediction_id = db.Column(db.Integer, db.ForeignKey('logs.prediction_id'))
+    store_id = db.Column(db.Integer, db.ForeignKey('raw_data.store_id'), nullable=True)
+    prediction_id = db.Column(db.Integer, db.ForeignKey('logs.prediction_id'), nullable=True)
 
 class training_data(db.Model): 
     store_id_training = db.Column(db.Integer, primary_key=True)
@@ -37,4 +38,4 @@ class training_data(db.Model):
 class logs(db.Model):
     prediction_id = db.Column(db.Integer, primary_key=True)
     prediction_log = db.Column(db.String(5000))
-    store_id_training = db.Column(db.Integer, db.ForeignKey('training_data.store_id_training'))
+    store_id_training = db.Column(db.Integer, db.ForeignKey('training_data.store_id_training'), nullable=True)
