@@ -5,7 +5,6 @@ userpanel = Blueprint('userpanel', __name__)
 
 @userpanel.route('/', methods=['GET', 'POST'])
 def user_panel():
-    
     if request.method == 'POST':
         numero_siret = request.form.get('numero_siret')
         nom_etablissement = request.form.get('nom_etablissement')
@@ -31,6 +30,5 @@ def user_panel():
             flash("Le métier doit comporter plus de 3 caractères", category='error')
         else:
             flash("Prédiction réalisée !", category='success')
-            pass
 
-        return render_template('userpanel.html')
+    return render_template('userpanel.html')
