@@ -2,7 +2,7 @@ import pandas as pd
 import wget
 import os
 
-from flask import Blueprint, render_template, request, Response
+from flask import Blueprint, render_template, request
 from website import db
 from .models import raw_data, inspection_data
 
@@ -46,7 +46,7 @@ def proto_back_panel():
             inspection_result = row["Synthese_eval_sanit"]
 
             industries = store_industry.split(separator)
-            approvals = store_approval.split(separator)
+            approvals = str(store_approval).split(separator)
             for industry in industries:
                 for approval in approvals:
                     new_raw_row = raw_data(

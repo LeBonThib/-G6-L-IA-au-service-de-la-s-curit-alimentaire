@@ -1,4 +1,4 @@
-/website/__pycache__
-/website/func_library/config.py
-/website/func_library/database_query.py
-/website/func_library/database.ini
+website/__pycache__
+website/alim_confiance.db
+website/static/downloads/
+*.ipynb
