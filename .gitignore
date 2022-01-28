@@ -1,0 +1,4 @@
+website/__pycache__
+website/alim_confiance.db
+website/static/downloads/
+*.ipynb
