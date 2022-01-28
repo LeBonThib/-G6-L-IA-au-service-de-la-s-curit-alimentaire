@@ -3,6 +3,9 @@
 {% block content %}
 
 <!--------------------------------------------------------------------------------------------------------------------------------->
+<!--Intégration CSS pour Flask, ce code va venir écraser les link CSS BOOTSTRAP qui sont au dessus -->
+    <link rel='stylesheet"' href="{{ url_for('static', filename='userpanel.css') }}" />
+
 <form method="POST">
 
     <header>
@@ -16,6 +19,24 @@
         </div>
 </header>
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+{% if category == 'error' %}
+<div class="alert alert-danger alter-dismissable fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% else %}
+<div class="alert alert-success alter-dismissable fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %} {% endfor %} {% endif %} {% endwith %}
 
     <h3 align="center">BONJOUR INSPECTEUR(TRICE)</h3>
 
@@ -92,3 +113,4 @@
     <button type="submit" class="btn btn-primary">PREDICTION</button>
 </form>
 {% endblock %} 
+
