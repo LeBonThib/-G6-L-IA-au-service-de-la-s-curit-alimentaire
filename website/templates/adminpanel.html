@@ -1,82 +1,59 @@
-{% extends "base.html" %} {% block title %}Panel Admin{% endblock %} {% block
-content %}
-<h1>Bonjour Administrateur !</h1>
-
-<div class="admin_panel">
-    <div class="flex_row">
-        <div class="checkbox_container">
-            <h2>Filtre Entrainement</h2>
-            <div class="form-check form-switch checkbox">
-                <input
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckDefault"/>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 1</label>
-            </div>
-            <div class="form-check form-switch checkbox">
-                <input
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckChecked"
-                checked/>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Paramètre 2</label>
-            </div>
-            <div class="form-check form-switch checkbox">
-                <input
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckDefault"/>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 3</label>
-            </div>
-            <div class="form-check form-switch checkbox">
-                <input
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckDefault"/>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 4</label>
-            </div>
-            <div class="form-check form-switch checkbox">
-                <input
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckDefault"/>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 5</label>
-            </div>
-            <div class="form-check form-switch checkbox">
-                <input
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckDefault"/>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 6</label>
-            </div>
-            <div class="form-check form-switch checkbox">
-                <input
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckDefault"/>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 7</label>
-            </div>
-            <div class="form-check form-switch checkbox">
-                <input
-                class="form-check-input"
-                type="checkbox"
-                id="flexSwitchCheckDefault"/>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 8</label>
-            </div>
-        </div>
-
-        <div class="csv_preview_container">
-            <h2>Lignes CSV alimConfiance
-            </h2>
-            <div class="csv_preview">
-            </div>
-        </div>
-
+{% extends "base.html" %}
+{% block title %}Panel Admin{% endblock %} 
+{% block content %}
+<h1>BONJOUR ADMINISTRATEUR!</h1>
+<div>
+  <p>Ici, une description, si je n'oublie pas.</p>
+</div>
+<div class="container">
+  <h2>Filtre Entrainement</h2>
+  <form method="POST">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="first_parameter"/>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 1</label>
     </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="second_parameter"/>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 2</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="third_parameter"/>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 3</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="fourth_parameter"/>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 4</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="fifth_parameter"/>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 5</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="sixth_parameter"/>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 6</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="seventh_parameter"/>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 7</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="eigth_parameter"/>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 8</label>
+    </div>
+    <br />
     <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#exampleModal">Entrainement</button>
+  </form>
+</div>
+<br />
+<div class='flex-container'>
+  <div class='flex-row'>
+    <a class="btn btn-secondary" href="/proto_back" role="button">Home</a>
+    <a class="btn btn-secondary" href="/proto_back" role="button">Rebase</a>
+    <a class="btn btn-secondary" href="/proto_ml" role="button">Machine Learning Dashboard</a>
+  </div>
 </div>
 
-<!-- <--------------------------------------MODAL-------------------------------------> -->
+<!-- <--------------------------------------MODAL------------------------------------->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -96,6 +73,4 @@ content %}
       </div>
     </div>
   </div>
-
-
 {% endblock %}

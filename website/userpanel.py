@@ -1,10 +1,13 @@
 from flask import Blueprint, render_template, request, flash
 
 userpanel = Blueprint('userpanel', __name__)
-#----------------------------------------------------------------------------------------------------------------------------------------------------
+from .models import raw_data
 
 @userpanel.route('/', methods=['GET', 'POST'])
 def user_panel():
+    list_industry = get_industries_from_db()
+    max_industry = len(list_industry)
+
     if request.method == 'POST':
         numero_siret = request.form.get('numero_siret')
         nom_etablissement = request.form.get('nom_etablissement')
@@ -31,4 +34,11 @@ def user_panel():
         else:
             flash("Prédiction réalisée !", category='success')
 
-    return render_template('userpanel.html')
+    return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
+
+def get_industries_from_db():
+    industry_query = raw_data.query.with_entities(raw_data.store_industry).distinct()
+    industry_list = []
+    for industry in industry_query:
+        industry_list.append(industry[0])
+    return industry_list

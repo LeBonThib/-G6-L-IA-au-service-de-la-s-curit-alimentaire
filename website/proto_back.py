@@ -62,19 +62,15 @@ def proto_back_panel():
                         store_industry_ods=store_industry_ods
                     )
                     db.session.add(new_raw_row)
-
-            store_id_query = raw_data.query.filter_by(store_id=r+1).first()
-            store_id = store_id_query.store_id
-            
-            new_inspection_row = inspection_data(
-                inspection_id=inspection_id,
-                inspection_date=inspection_date,
-                inspection_result=inspection_result,
-                store_id=store_id
-            )
-
-            db.session.add(new_inspection_row)
-            print(r)
-
+                    store_id_query = raw_data.query.filter_by(store_id=r+1).first()
+                    store_id = store_id_query.store_id
+                    new_inspection_row = inspection_data(
+                    inspection_id=inspection_id,
+                    inspection_date=inspection_date,
+                    inspection_result=inspection_result,
+                    store_id=store_id
+                    )
+                    db.session.add(new_inspection_row)
+                print(r)
     db.session.commit()
     return render_template("proto_back.html")

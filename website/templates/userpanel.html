@@ -1,116 +1,34 @@
 {% extends "base.html" %}
 {% block title %}Panel User{% endblock %}
+
 {% block content %}
-
-<!--------------------------------------------------------------------------------------------------------------------------------->
-<!--Intégration CSS pour Flask, ce code va venir écraser les link CSS BOOTSTRAP qui sont au dessus -->
-    <link rel='stylesheet"' href="{{ url_for('static', filename='userpanel.css') }}" />
-
+<h1>BONJOUR INSPECTEUR.TRICE</h1>
+<div>
+    <p>Ici, une description, si je n'oublie pas.</p>
+</div>
 <form method="POST">
-
-    <header>
-        <div class="row pictos">
-            <div id="marianne1">
-                <img src="https://www.ville-hem.fr/wp-content/uploads/2020/03/LOGO-Mariannepup-up.jpg">
-            </div>
-            <div id="alimconfiance">
-                    <img src="https://play-lh.googleusercontent.com/HlYdClsXTkxcmqLT5EY8LTSS6i_-yW7HrLVrl-_XXPXyn6IR8hZIs69AuVa5vvEjHw">
-                </div>
-        </div>
-</header>
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-{% if category == 'error' %}
-<div class="alert alert-danger alter-dismissable fade show" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% else %}
-<div class="alert alert-success alter-dismissable fade show" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% endif %} {% endfor %} {% endif %} {% endwith %}
-
-    <h3 align="center">BONJOUR INSPECTEUR(TRICE)</h3>
-
+    <h2>Prediction</h3>
     <div class="form-group">
-        <label for="numero_siret">Numéro SIRET</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="text" 
-        name="numero_siret" 
-        placeholder="Entrer le numéro SIRET">
+        <label for="nom_etablissement">Nom de l'établissement</label>
+        <input type="text" class="form-control" name="nom_etablissement" placeholder="Entrez le nom de l'établissement">
     </div>
     <div class="form-group">
-        <label for="nom_etablissement">Nom d'établissement</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="nom_etablissement" 
-        name="nom_etablissement" 
-        placeholder="Entrer le nom de l'établissement">
+        <label for="adresse_etablissement">Code postal de l'établissement</label>
+        <input type="text" class="form-control" name="adresse_etablissement" placeholder="Entrez l'adresse de l'établissement">
     </div>
-
     <div class="form-group">
-        <label for="adresse_etablissement">Adresse de l'établissement</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="adresse_etablissement" 
-        name="adresse_etablissement" 
-        placeholder="Entrer l'adresse de l'établissement">
+        <label for="code_postal_etablissement">Activité de l'établissement</label><br />
+        <select class="form-select" aria-label="Default select example">
+            <option selected>--Activité--</option>
+            {% for industry in range(0,max_industry_param) %}
+                <option value='{{ list_industry_param[industry] }}'>{{ list_industry_param[industry] }}</option>
+            {% endfor %}
+        </select>
     </div>
-
-    <div class="form-group">
-        <label for="code_postal_etablissement">Code Postal de l'établissement</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="code_postal_etablissement" 
-        name="code_postal_etablissement" 
-        placeholder="Entrer le code postal de l'établissement">
-    </div>
-
-    <div class="form-group">
-        <label for="commune_etablissement">Commune de l'établissement</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="commune_etablissement" 
-        name="commune_etablissement" 
-        placeholder="Entrer la commune de l'établissement">
-    </div>
-
-    <div class="form-group">
-        <label for="geoloc_etablissement">Géolocalisation de l'établissement</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="geoloc_etablissement" 
-        name="geoloc_etablissement" 
-        placeholder="Entrer la géolocalisation de l'établissement">
-    </div>
-
-    <div class="form-group">
-        <label for="metier">Métier</label>
-        <input 
-        type="text" 
-        class="form-control" 
-        id="metier" 
-        name="metier" 
-        placeholder="Entrer le métier de l'établissement">
-    </div>
-
     <br />
-    <button type="submit" class="btn btn-primary">PREDICTION</button>
+    <button type="submit" class="btn btn-primary">Prédiction</button>
+    <br /><br />
+    <a class="btn btn-secondary" href="/admin" role="button">Admin</a>
 </form>
 {% endblock %} 
 
