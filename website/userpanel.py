@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, flash
 import pandas as pd
 import pickle
+from sqlalchemy import text
+from website import db
 
 userpanel = Blueprint('userpanel', __name__)
 from .models import raw_data
@@ -24,7 +26,7 @@ def user_panel():
             if not store_zipcode.isnumeric():
                 flash("Fais pas le malin, utilise des chiffres.", category='error')
                 return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
-            model_prediction_module(store_zipcode, store_industry)
+            model_prediction_module(store_zipcode, store_industry, list_industry, max_industry)
 
     return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
 
@@ -36,7 +38,7 @@ def get_industries_from_db():
     industry_list.sort()
     return industry_list
 
-def model_prediction_module(store_zipcode, store_industry):
+def model_prediction_module(store_zipcode, store_industry, list_industry, max_industry):
     with open('model_pickle','rb') as model_file:
         loaded_model = pickle.load(model_file)
     with open('encoder_pickle','rb') as encoder_file:
@@ -44,8 +46,14 @@ def model_prediction_module(store_zipcode, store_industry):
 
     feature_dict = dict(store_zipcode = str(float(store_zipcode)), store_industry = store_industry)
     feature_data = pd.DataFrame(feature_dict, index=[0])
+    zipcode_check_query = text(f'SELECT * FROM raw_data WHERE store_zipcode = {str(float(store_zipcode))}')
+    zipcode_check_return = pd.read_sql_query(zipcode_check_query, db.engine)
+    if zipcode_check_return.empty:
+        flash("Ce code postal n'est pas dans la base de données, je ne peux donc pas faire de prédiction.", category='error')
+        return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
     feature_test = loaded_encoder.transform(feature_data)
     prediction = loaded_model.predict(feature_test) 
+    
     if prediction[0] == 0:
         flash("Prédiction: À améliorer, je serais toi, j'irais faire un tour quand même.", category='success')
     if prediction[0] == 1:

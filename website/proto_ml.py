@@ -28,7 +28,7 @@ def proto_ml_panel():
     return render_template("adminpanel.html")
 
 def model_training_module():
-    # Create the engine to connect to the PostgreSQL database
+    # Create the engine to connect to the database
     engine = sqlalchemy.create_engine('sqlite:///C:\\Users\\Pontiff\\Desktop\\SIMPLON_DEV_IA_DOCUMENTS_THIBAUT_PERNET\\-G6-L-IA-au-service-de-la-s-curit-alimentaire\\website\\alim_confiance.db')
     
     # Read raw_data from SQL table

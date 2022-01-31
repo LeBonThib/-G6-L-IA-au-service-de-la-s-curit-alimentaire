@@ -1,5 +1,3 @@
-from asyncio.windows_events import NULL
-from modulefinder import STORE_NAME
 from website import db
 
 class raw_data(db.Model):
