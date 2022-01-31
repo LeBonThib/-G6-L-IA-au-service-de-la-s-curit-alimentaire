@@ -23,7 +23,7 @@ class inspection_data(db.Model):
     store_id = db.Column(db.Integer, db.ForeignKey('raw_data.store_id'), nullable=True)
     prediction_id = db.Column(db.Integer, db.ForeignKey('logs.prediction_id'), nullable=True)
 
-""" class training_data(db.Model): 
+class training_data(db.Model): 
     store_id_training = db.Column(db.Integer, primary_key=True)
     store_name_training = db.Column(db.String(5000))
     store_siret_training = db.Column(db.String(5000))
@@ -34,7 +34,7 @@ class inspection_data(db.Model):
     store_approval_training = db.Column(db.String(5000))
     store_geoloc_training = db.Column(db.String(5000))
     store_filter_training = db.Column(db.String(5000))
-    store_industry_ods_training = db.Column(db.String(5000)) """
+    store_industry_ods_training = db.Column(db.String(5000))
 
 class logs(db.Model):
     prediction_id = db.Column(db.Integer, primary_key=True)

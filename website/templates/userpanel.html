@@ -1,34 +1,47 @@
 {% extends "base.html" %}
-{% block title %}Panel User{% endblock %}
+{% block title %}Alim'Confiance{% endblock %}
 
 {% block content %}
-<h1>BONJOUR INSPECTEUR.TRICE</h1>
-<div>
-    <p>Ici, une description, si je n'oublie pas.</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1>BONJOUR INSPECTEUR.TRICE</h1>
+    </div>
+    <div class="row justify-content-center">
+        <p> 
+            Integer a auctor velit. Nullam libero massa, imperdiet ac arcu vitae, volutpat rutrum ipsum. Duis condimentum efficitur lectus, a ornare mi sollicitudin a. Donec ut finibus ligula. Phasellus in pharetra augue. Nullam diam leo, tincidunt at sem a, congue pretium erat. Nulla auctor aliquam felis, nec fermentum mauris consectetur sed. Integer suscipit eget quam at suscipit. Fusce eleifend molestie metus eget fermentum. Integer pulvinar quis urna quis laoreet. Praesent venenatis gravida felis a placerat. Ut mattis, felis quis facilisis rutrum, nisl tellus elementum sem, vel bibendum dui elit sed mauris. Vivamus mi nulla, pharetra ac bibendum dignissim, egestas nec mi.
+        </p>
+        <p>
+            Fusce porta rhoncus nulla, a malesuada arcu eleifend at. Quisque condimentum urna ac dui gravida, in lobortis metus maximus. Suspendisse non ullamcorper lacus. Duis commodo elementum ipsum, nec dapibus nunc pellentesque at. Vestibulum at lorem lacus. Nullam euismod, sapien vitae ultricies tristique, erat ligula vehicula libero, vitae maximus arcu orci quis quam. Curabitur sed sapien rutrum erat mattis hendrerit in ac ante. Vestibulum pretium odio in lorem dictum, eu elementum leo hendrerit. Proin ut vehicula ex. Quisque nibh lectus, tincidunt nec nulla ac, dictum malesuada tortor. Fusce convallis, est ac aliquam cursus, orci metus faucibus mauris, non scelerisque est orci in enim. Maecenas consequat sem id elit suscipit, a placerat orci eleifend. Cras vitae varius risus. Duis et lobortis ligula.
+        </p>
+    </div>
+    <div class="row justify-content-center">
+        <h2>Prédiction du niveau d'hygiène d'un établissement</h2>
+    </div>
+    <div class="row justify-content-center">
+        <form method="POST">
+        <div class="form-group">
+            <label for="nom_etablissement">Nom de l'établissement</label>
+            <input type="text" class="form-control" name="nom_etablissement" placeholder="Entrez le nom de l'établissement">
+        </div>
+        <div class="form-group">
+            <label for="adresse_etablissement">Code postal de l'établissement</label>
+            <input type="text" class="form-control" name="adresse_etablissement" placeholder="Entrez l'adresse de l'établissement">
+        </div>
+        <div class="form-group">
+            <label for="code_postal_etablissement">Activité de l'établissement</label><br />
+            <select class="form-select" aria-label="Default select example">
+                <option selected>--Activité--</option>
+                {% for industry in range(0,max_industry_param) %}
+                    <option value='{{ list_industry_param[industry] }}'>{{ list_industry_param[industry] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br />
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary">Prédiction</button>
+        </div>
+        </form>
+    </div>
 </div>
-<form method="POST">
-    <h2>Prediction</h3>
-    <div class="form-group">
-        <label for="nom_etablissement">Nom de l'établissement</label>
-        <input type="text" class="form-control" name="nom_etablissement" placeholder="Entrez le nom de l'établissement">
-    </div>
-    <div class="form-group">
-        <label for="adresse_etablissement">Code postal de l'établissement</label>
-        <input type="text" class="form-control" name="adresse_etablissement" placeholder="Entrez l'adresse de l'établissement">
-    </div>
-    <div class="form-group">
-        <label for="code_postal_etablissement">Activité de l'établissement</label><br />
-        <select class="form-select" aria-label="Default select example">
-            <option selected>--Activité--</option>
-            {% for industry in range(0,max_industry_param) %}
-                <option value='{{ list_industry_param[industry] }}'>{{ list_industry_param[industry] }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">Prédiction</button>
-    <br /><br />
-    <a class="btn btn-secondary" href="/admin" role="button">Admin</a>
-</form>
 {% endblock %} 
 

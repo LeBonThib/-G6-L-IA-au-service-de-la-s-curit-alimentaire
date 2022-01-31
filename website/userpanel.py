@@ -41,4 +41,5 @@ def get_industries_from_db():
     industry_list = []
     for industry in industry_query:
         industry_list.append(industry[0])
-    return industry_list
+    industry_list.sort()
+    return industry_list    

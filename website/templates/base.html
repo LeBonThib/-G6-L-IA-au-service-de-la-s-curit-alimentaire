@@ -14,9 +14,28 @@
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             crossorigin="anonymous"
         />
+        <style>
+        .container {
+            width: 60%;
+            opacity: 90%;
+        }
+        </style>
+        {% block custom_css %}{% endblock %}
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
+        <!-- <div class="bg-image" style="background-image: url('website/static/wallhaven.jpg');height: 100vh"></div> -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type='button' data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="/">Home</a>
+                    <a class="nav-item nav-link" href="/admin">Panel Admin</a>
+                </div>
+            </div>
+        </nav>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages%}
@@ -38,11 +57,9 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-
-        <div class="container">
-            {% block content %}
-            {% endblock %}
-        </div>
+        <section>
+            {% block content %}{% endblock %}
+        </section>
         <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -62,5 +79,6 @@
             type="text/javascript"
             src="{{ url_for('static', filename='index.js') }}"
         ></script>
+        {% block custom_script %}{% endblock %}
     </body>
 </html>

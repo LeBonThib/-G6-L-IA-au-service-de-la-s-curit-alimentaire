@@ -1,57 +1,73 @@
 {% extends "base.html" %}
-{% block title %}Panel Admin{% endblock %} 
+{% block custom_css %}
+{% endblock %}
+{% block title %}Alim'Confiance{% endblock %} 
 {% block content %}
-<h1>BONJOUR ADMINISTRATEUR!</h1>
-<div>
-  <p>Ici, une description, si je n'oublie pas.</p>
-</div>
 <div class="container">
-  <h2>Filtre Entrainement</h2>
-  <form method="POST">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="first_parameter"/>
-      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 1</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="second_parameter"/>
-      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 2</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="third_parameter"/>
-      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 3</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="fourth_parameter"/>
-      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 4</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="fifth_parameter"/>
-      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 5</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="sixth_parameter"/>
-      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 6</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="seventh_parameter"/>
-      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 7</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="eigth_parameter"/>
-      <label class="form-check-label" for="flexSwitchCheckDefault">Paramètre 8</label>
-    </div>
-    <br />
-    <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#exampleModal">Entrainement</button>
-  </form>
-</div>
-<br />
-<div class='flex-container'>
-  <div class='flex-row'>
-    <a class="btn btn-secondary" href="/proto_back" role="button">Home</a>
-    <a class="btn btn-secondary" href="/proto_back" role="button">Rebase</a>
-    <a class="btn btn-secondary" href="/proto_ml" role="button">Machine Learning Dashboard</a>
+  <div class="row justify-content-center">
+    <h1>BONJOUR ADMINISTRATEUR</h1>
+  </div>
+  <div class="row justify-content-center">
+    <p> 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquam, felis ac lacinia aliquet, lectus quam volutpat elit, eu volutpat mauris nibh id neque. Cras nisi nibh, fermentum eu rhoncus vel, aliquam sed risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla facilisi. Fusce mollis massa sit amet nunc fermentum eleifend. In ac fermentum nisl. Nulla vel tellus suscipit, tincidunt diam in, dapibus nulla. Vivamus feugiat elit ac ex egestas rutrum eget quis nibh.
+    </p>
+    <p>
+      In id nisi urna. Vestibulum eu mi et dui dictum consectetur. Etiam a ullamcorper odio. Curabitur volutpat ex sit amet neque euismod venenatis. Praesent commodo est a metus porttitor gravida. Donec pulvinar lacus sit amet dui sollicitudin tempus. Praesent ac ex felis. Morbi at odio vel erat porta congue nec eu eros. Phasellus finibus, nulla vitae gravida rhoncus, diam lacus feugiat velit, nec aliquet ante metus sit amet dolor. Donec nec aliquet est. Morbi eu quam turpis. Curabitur eleifend eros eget tortor luctus, ac accumsan libero posuere. 
+    </p>
   </div>
 </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <h2>Entraînement du modèle de classification</h2>
+  </div>
+  <div class="row justify-content-center">
+    <form method="POST">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="store_name_param"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Raison sociale</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="store_siret_param"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Numéro SIRET</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="store_address_param"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Adresse</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="store_zipcode_param"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Code postal</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="store_industry_param"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Activités</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="store_approval_param"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Agréments</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="store_geoloc_param"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Géolocalisation</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="store_filter_param"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Filtre</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="store_industry_ods_param"/>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Activités ODS</label>
+      </div>
+      <br />
+      <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Train new classification model</button>
+      <form method="post">
+        <input type="hidden" id="refresh_csv" name="refresh_csv" value="refresh_csv">
+        <button class="btn btn-secondary" type="submit" onclick="loading();">Refresh CSV & Rebase</button>
+      </form>
+    </form>
+  </div>
+</div>
+
 
 <!-- <--------------------------------------MODAL------------------------------------->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,7 +80,21 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          {% with global_variable = REBASE_STATUS %}
+            {% if global_variable %}
+              <script>
+                $("#modal_body_from_global").load(location.href+" #modal_body_from_global>*","");
+              </script>
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div class="container">
+                <p id='modal_body_from_global'>{{global_variable}}</p>
+              </div>
+            {% endif %}
+          {% endwith %}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -73,4 +103,6 @@
       </div>
     </div>
   </div>
+{% endblock %}$
+{% block custom_script %}
 {% endblock %}

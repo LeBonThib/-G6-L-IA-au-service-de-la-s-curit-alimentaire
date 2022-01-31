@@ -1,7 +1,9 @@
 import pandas as pd
 import sqlalchemy
 import matplotlib as mpl
+import pickle
 mpl.rcParams['figure.dpi'] = 300
+mpl.use('Agg')
 from matplotlib import pyplot as plt
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 from sklearn import model_selection
@@ -22,6 +24,9 @@ proto_ml = Blueprint('proto_ml', __name__)
 
 @proto_ml.route('/proto_ml', methods=['GET','POST'])
 def proto_ml_panel():
+    return render_template("proto_back.html")
+
+def model_training_module():
     # Create the engine to connect to the PostgreSQL database
     engine = sqlalchemy.create_engine('sqlite:///C:\\Users\\Pontiff\\Desktop\\SIMPLON_DEV_IA_DOCUMENTS_THIBAUT_PERNET\\-G6-L-IA-au-service-de-la-s-curit-alimentaire\\website\\alim_confiance.db')
     
@@ -88,5 +93,14 @@ def proto_ml_panel():
     forest_matrix.figure_.suptitle("Confusion Matrix (Random Forest)")
     print(f"Confusion matrix:\n{forest_matrix.confusion_matrix}")
     #plt.show();
+
+    with open ('model_pickle','wb') as model_file:
+        pickle.dump(forest_classifier, model_file) 
         
-    return render_template("proto_back.html")
+def model_prediction_module():
+    with open('model_pickle','rb') as model_file:
+        loaded_model = pickle.load(model_file)
+
+    # Predict a class for each feature
+    loaded_model.predict(feature_test)
+    
