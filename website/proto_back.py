@@ -30,6 +30,8 @@ def refresh_and_rebase():
     alimconfiance_dataset_raw = pd.read_csv(imported_csv, sep=';')
     alimconfiance_dataset_raw.fillna("_", inplace=True)
 
+    print(alimconfiance_dataset_raw.info())
+
     loop_length = len(alimconfiance_dataset_raw)
     separator = "|"
 

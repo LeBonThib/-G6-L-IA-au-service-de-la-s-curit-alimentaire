@@ -3,3 +3,5 @@
 /website/__pycache__
 alim_confiance.db
 model_pickle
+ml_sampling_test.py
+encoder_pickle

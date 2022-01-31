@@ -24,7 +24,8 @@ proto_ml = Blueprint('proto_ml', __name__)
 
 @proto_ml.route('/proto_ml', methods=['GET','POST'])
 def proto_ml_panel():
-    return render_template("proto_back.html")
+    model_training_module()
+    return render_template("adminpanel.html")
 
 def model_training_module():
     # Create the engine to connect to the PostgreSQL database
@@ -38,7 +39,7 @@ def model_training_module():
     inspection_data_dataframe_query = pd.read_sql_table('inspection_data', engine)
     inspection_data_dataframe = inspection_data_dataframe_query
     
-    feature = raw_data_dataframe[['store_industry']]
+    feature = raw_data_dataframe.loc[:,["store_zipcode", "store_industry"]]
     label = inspection_data_dataframe['inspection_result']
 
     print(type(feature))
@@ -81,26 +82,9 @@ def model_training_module():
     # Build a random forest from the training set of data
     forest_classifier.fit(feature_train, label_train)
 
-    # Predict a class for each feature
-    forest_label_pred = forest_classifier.predict(feature_test)
-
-    # Display classification report of Random Forest
-    print("Random Forest Classification Report")
-    print(metrics.classification_report(label_test, forest_label_pred, zero_division=0))
-
-    # Display confusion matrix
-    forest_matrix = metrics.plot_confusion_matrix(forest_classifier, feature_test, label_test)
-    forest_matrix.figure_.suptitle("Confusion Matrix (Random Forest)")
-    print(f"Confusion matrix:\n{forest_matrix.confusion_matrix}")
-    #plt.show();
-
     with open ('model_pickle','wb') as model_file:
-        pickle.dump(forest_classifier, model_file) 
-        
-def model_prediction_module():
-    with open('model_pickle','rb') as model_file:
-        loaded_model = pickle.load(model_file)
-
-    # Predict a class for each feature
-    loaded_model.predict(feature_test)
+        pickle.dump(forest_classifier, model_file)
+    
+    with open("encoder_pickle", "wb") as encoder_file: 
+        pickle.dump(feature_encoder, encoder_file)
     
