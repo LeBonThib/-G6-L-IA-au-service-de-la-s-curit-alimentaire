@@ -94,9 +94,9 @@ def model_training_module():
 
     """ Compare models, pick most accurate and pass that information to the front  """ 
     best_model, deez_nuts = ((best_lr, f'Modèle entraîné via régression logistique(grid search), accuracy: {int(best_lr_accuracy * 100)}%'), (best_forest, f'Modèle entraîné via random forest(grid search), accuracy: {int(best_forest_accuracy * 100)}%'))[best_forest_accuracy > best_lr_accuracy]
-    with open ('/static/model_pickle','wb') as model_file:
+    with open ('model_pickle','wb') as model_file:
         pickle.dump(best_model, model_file)
-    with open("/static/encoder_pickle", "wb") as encoder_file: 
+    with open("encoder_pickle", "wb") as encoder_file: 
         pickle.dump(feature_encoder, encoder_file)
     flash(deez_nuts, category='success')
     return render_template("adminpanel.html")
