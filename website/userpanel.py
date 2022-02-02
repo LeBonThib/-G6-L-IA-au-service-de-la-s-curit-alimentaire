@@ -31,6 +31,9 @@ def user_panel():
             if not os.path.exists(find_encoder_check):
                 flash("Pas de modèle détecté, merci de bien vouloir entraîner un modèle de classification depuis le panel admin.", category='error')
                 return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
+            if store_industry == '--Activité--':
+                flash("Veuillez choisir une activité.", category='error')
+                return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
             if store_zipcode == '12345':
                 flash("Haha, très drôle, tu es vraiment un petit rigolo.", category='error')
                 return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
