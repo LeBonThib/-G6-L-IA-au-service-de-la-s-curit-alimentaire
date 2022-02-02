@@ -11,27 +11,45 @@ proto_back = Blueprint('proto_back', __name__)
 
 @proto_back.route('/proto_back', methods=['GET','POST'])
 def proto_back_panel():
+    """Upon reaching the /proto_back URL endpoint, renders the proto_back.html template. Upon receiving data via the POST method, calls the refresh_and_rebase() function.
+
+    Returns:
+        function : render_template()
+    """
     if request.method == 'POST':
         refresh_and_rebase()
     return render_template("proto_back.html")
 
 def refresh_and_rebase():
+    """The aim of this function is to completely remove any data from the database as well as deleting the current .csv file used as reference so that we can populate the database with up-to-date data without risking any contamination from old data.
+    First we delete the existing 'export_alimconfiance.csv' if it exists, then we download the most recent .csv file from the Alim'Confiance website via the wget library. Then we transform part of our data via the pandas library. Then we store that transformed data into our database via the SQLAlchemy ORM. Once done, we refresh the adminpanel.html template with a message indicating wether or not that process was succesful. 
+
+    Returns:
+        function : render_template()
+    """
+
+    """ Prepare wget params """
     imported_csv = 'website/static/downloads/export_alimconfiance.csv'
     download_location_folder = 'website/static/downloads'
+
+    """ Check if file already exists"""
     if os.path.exists(imported_csv):
         os.remove(imported_csv)
+
+    """ Empty database without dropping tables """
     db.session.query(raw_data).delete()
     db.session.query(inspection_data).delete()
     db.session.commit()
 
+    """ Download file with wget"""
     download_location_url = 'https://dgal.opendatasoft.com/explore/dataset/export_alimconfiance/download/?format=csv&timezone=Europe/Berlin&lang=en&use_labels_for_header=true&csv_separator=%3B'
     wget.download(download_location_url, download_location_folder)
 
+    """ Read .csv file and convert content to dataframe, replace all NaN with another character"""
     alimconfiance_dataset_raw = pd.read_csv(imported_csv, sep=';')
     alimconfiance_dataset_raw.fillna("_", inplace=True)
 
-    print(alimconfiance_dataset_raw.info())
-
+    """ Prepare pandas params """
     loop_length = len(alimconfiance_dataset_raw)
     separator = "|"
 
@@ -53,10 +71,12 @@ def refresh_and_rebase():
         inspection_date = row["Date_inspection"] 
         inspection_result = row["Synthese_eval_sanit"]
 
+        """ Split all values on rows where multiple values are found in a single cell separated by a specific caracter"""
         industries = store_industry.split(separator)
         approvals = str(store_approval).split(separator)
         for industry in industries:
             for approval in approvals:
+                """ Assign each row of the dataframe to be added to the database via SQLAlchemy, with one new row per single 'industry' or 'approval' """
                 new_raw_row = raw_data(
                     store_name=store_name, 
                     store_siret=store_siret, 
@@ -69,6 +89,7 @@ def refresh_and_rebase():
                     store_filter=store_filter, 
                     store_industry_ods=store_industry_ods
                 )
+                """ Add row to what is really an SQL prepared statement """
                 db.session.add(new_raw_row)
                 store_id_query = raw_data.query.filter_by(store_id=r+1).first()
                 store_id = store_id_query.store_id

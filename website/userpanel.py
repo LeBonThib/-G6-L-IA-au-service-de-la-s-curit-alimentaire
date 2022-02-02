@@ -9,6 +9,11 @@ from .models import raw_data
 
 @userpanel.route('/', methods=['GET', 'POST'])
 def user_panel():
+    """Upon reaching the / URL endpoint, renders the userpanel.html template. Upon receiving data via the POST method, we collect data from the form in different variables and run checks to ensure that the received data fits the desired format, as well as handle the odd edge case. If any of those checks does not pass, we refresh the userpanel.html template with information as to why this process failed. If all checks pass, call the model_prediction_module() function.
+
+    Returns:
+        function : render_template() - 
+    """
     list_industry = get_industries_from_db()
     max_industry = len(list_industry)
 
@@ -31,6 +36,11 @@ def user_panel():
     return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
 
 def get_industries_from_db():
+    """The aim of this function is to pass a list containing data queried from the 'store_industry' column from the 'raw_data' table to the userpanel.html template to be used in a <select> tag in the main form. 
+
+    Returns:
+        industry_list : list
+    """
     industry_query = raw_data.query.with_entities(raw_data.store_industry).distinct()
     industry_list = []
     for industry in industry_query:
@@ -39,6 +49,13 @@ def get_industries_from_db():
     return industry_list
 
 def model_prediction_module(store_zipcode, store_industry, list_industry, max_industry):
+    """The aim of this function is to apply the pickled_model generated in the model_training_module() function with the parameters inputted by the user in the form from the userpanel.html template.
+    First we 
+
+
+    Returns:
+        industry_list : list
+    """
     with open('model_pickle','rb') as model_file:
         loaded_model = pickle.load(model_file)
     with open('encoder_pickle','rb') as encoder_file:

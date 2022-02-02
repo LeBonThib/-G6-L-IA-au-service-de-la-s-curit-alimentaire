@@ -20,7 +20,7 @@
     <h2>Entraînement du modèle de classification</h2>
   </div>
   <div class="row justify-content-center">
-    <form method="POST">
+    <form method="post">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="store_name_param"/>
         <label class="form-check-label" for="flexSwitchCheckDefault">Raison sociale</label>
@@ -58,13 +58,17 @@
         <label class="form-check-label" for="flexSwitchCheckDefault">Activités ODS</label>
       </div>
       <br />
-      <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Train new classification model</button>
+      <input type="hidden" id="retrain_model" name="retrain_model" value="retrain_model">
+      <button class="btn btn-primary" type="submit">Train new classification model</button>
+    </form>
+    </div>
+    <br/>
+    <div class="row justify-content-center">
       <form method="post">
         <input type="hidden" id="refresh_csv" name="refresh_csv" value="refresh_csv">
         <button class="btn btn-secondary" type="submit">Refresh CSV & Rebase</button>
       </form>
-    </form>
-  </div>
+    </div>
 </div>
 
 
