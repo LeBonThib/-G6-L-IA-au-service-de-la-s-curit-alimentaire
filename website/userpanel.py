@@ -3,6 +3,7 @@ import pandas as pd
 import pickle
 from sqlalchemy import text
 from website import db
+import os
 
 userpanel = Blueprint('userpanel', __name__)
 from .models import raw_data
@@ -22,6 +23,14 @@ def user_panel():
         if form_check_for_prediction.get('prediction_button'):
             store_zipcode = form_check_for_prediction.get('store_zipcode')
             store_industry = form_check_for_prediction.get('store_industry')
+            find_model_check = 'website/model_pickle'
+            find_encoder_check = 'website/encoder_pickle'
+            if not os.path.exists(find_model_check):
+                flash("Pas de modèle détecté, merci de bien vouloir entraîner un modèle de classification depuis le panel admin.", category='error')
+                return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
+            if not os.path.exists(find_encoder_check):
+                flash("Pas de modèle détecté, merci de bien vouloir entraîner un modèle de classification depuis le panel admin.", category='error')
+                return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)
             if store_zipcode == '12345':
                 flash("Haha, très drôle, tu es vraiment un petit rigolo.", category='error')
                 return render_template('userpanel.html', list_industry_param=list_industry, max_industry_param=max_industry)

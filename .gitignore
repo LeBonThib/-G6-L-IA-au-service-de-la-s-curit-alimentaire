@@ -1,5 +1,5 @@
 /website/alim_confiance.db
-/website/static/downloads
+/website/static/export_alimconfiance.csv
 /website/__pycache__
 alim_confiance.db
 model_pickle

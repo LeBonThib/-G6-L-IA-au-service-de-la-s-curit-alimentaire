@@ -29,8 +29,8 @@ def refresh_and_rebase():
     """
 
     """ Prepare wget params """
-    imported_csv = 'website/static/downloads/export_alimconfiance.csv'
-    download_location_folder = 'website/static/downloads'
+    imported_csv = 'website/static/export_alimconfiance.csv'
+    download_location_folder = 'website/static'
 
     """ Check if file already exists"""
     if os.path.exists(imported_csv):
@@ -41,7 +41,7 @@ def refresh_and_rebase():
     db.session.query(inspection_data).delete()
     db.session.commit()
 
-    """ Download file with wget"""
+    """ Download file with wget """
     download_location_url = 'https://dgal.opendatasoft.com/explore/dataset/export_alimconfiance/download/?format=csv&timezone=Europe/Berlin&lang=en&use_labels_for_header=true&csv_separator=%3B'
     wget.download(download_location_url, download_location_folder)
 
