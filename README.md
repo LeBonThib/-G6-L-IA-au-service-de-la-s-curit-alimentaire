@@ -1,1 +1,1 @@
-# -G6-L-IA-au-service-de-la-s-curit-alimentaire
+# ALIM'CONFIANCE - GROUPE 6 - ALLAN, LORRAINE, THIBAUT
