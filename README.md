@@ -1,11 +1,11 @@
 # ALIM'CONFIANCE - GROUPE 6 - ALLAN, LORRAINE, THIBAUT
 
-### INSTALLATION DES LIBRAIRIES *(voir requirements.txt)*
+### INSTALLATION DES LIBRARIES *(voir requirements.txt)*
 ```
 pip install -r requirements.txt
 ```
 
-### LIBRAIRIES UTILISÉES DANS CE PROJET
+### LIBRARIES UTILISÉES DANS CE PROJET
 ```
 Flask==2.0.2
 Flask_SQLAlchemy==2.5.1
