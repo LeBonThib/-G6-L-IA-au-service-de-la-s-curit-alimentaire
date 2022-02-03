@@ -27,8 +27,13 @@ L'application Flask et son serveur web associé s'initie après exécution du fi
 **STEP 1:** 
 Accédez à la page "Panel Admin" via la barre de navigation en haut du site, cliquez sur le bouton "Refresh CSV and Rebase". Attendez qu'un message lisant _"CSV has been refreshed and database has been rebuilt. Good job myself."_ s'affiche en haut de votre navigateur avant de procéder à l'étape suivante. _(cette étape ne devrait pas prendre plus de deux ou trois minutes, les performances de votre ordinateur ont un impact sur la vitesse des diverses opérations.)_
 
-**STEP 2:** 
+**STEP 2: Option 1** 
 Toujours depuis la page "Panel Admin", cliquez sur le bouton "Train new classification model". Attendez qu'un message lisant _"Modèle entraîné via régression logistique(grid search), accuracy: x%"_ ou _"Modèle entraîné via random forest(grid search), accuracy: x%"_ s'affiche en haut de votre navigateur avant de procéder vers la page "Home" où se trouve l'outil de prédiction. _(cette étape ne devrait pas prendre plus de vingt minutes et probablement moins que cinq, cette étape va également utiliser 100% de la puissance de votre CPU pour réduire les temps d'opération, merci de ne pas paniquer. les performances de votre ordinateur ont un impact sur la vitesse des diverses opérations.)_
+
+**ou**
+
+**STEP 2: Option 2**
+Extrayez les fichiers **model_pickle** et **encoder_pickle** à la **racine** du projet _(G6_Alimconfiance)_ pour ne pas avoir à générer un nouveau modèle. _(l'archive contient un modèle de régression logistique avec une accuracy de 62%)_
 
 ---
 ### ARCHITECTURE DES TEMPLATES HTML
