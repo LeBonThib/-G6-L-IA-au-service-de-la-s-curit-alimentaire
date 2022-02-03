@@ -35,7 +35,7 @@ Toujours depuis la page "Panel Admin", cliquez sur le bouton "Train new classifi
 - base.html -- contient le template principal 
 - adminpanel.html -- /admin
 - userpanel.html -- /
-- proto_back.html -- /proto_back (page prototype non-fonctionnelle laissé à titre historique)
+- proto_back.html -- /proto_back (page prototype non-fonctionnelle laissée à titre historique)
 
 ### ARCHITECTURE DES FICHIERS PYTHON
 - main.py -- contient la fonction de lancement de l'application et du serveur Flask ainsi que de la création de la base de données
